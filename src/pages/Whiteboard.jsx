@@ -9,11 +9,21 @@ function Whiteboard() {
         setReminders(prev => [...prev, item]);
     }
 
+    const removeReminder = (toRemove) => {
+      console.log('removing: ', toRemove)
+      let filtered = reminders.filter(item => {
+        if(item !== toRemove) {
+          return item;
+        }
+      })
+      setReminders(filtered);
+    }
+
   return (
     <div className='whiteboard-container'>
         <h2>Whiteboard</h2>
         <Form add={addReminder} />
-        <ListContainer data={reminders}/>
+        <ListContainer data={reminders} remove={removeReminder}/>
     </div>
   )
 }
