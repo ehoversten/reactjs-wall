@@ -1,13 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-function Form({ add }) {
+function Form({ add, update }) {
 
     const [newReminder, setNewReminder] = useState('');
+
+    useEffect(() => {
+      if(update) {
+        setNewReminder(update);
+      }
+    }, [update])
+
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
         add(newReminder);
         setNewReminder('')
+        update('')
     }
 
   return (
@@ -18,7 +26,12 @@ function Form({ add }) {
                    id="reminder"
                    value={newReminder} 
                    onChange={(evt) => setNewReminder(evt.target.value)}/>
-            <button type="submit">Add</button>
+            { update ? (
+              <button type="submit">Update</button>
+            ) : (
+              <button type="submit">Add</button> )
+            }
+            
         </form>
     </div>
   )

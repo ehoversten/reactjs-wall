@@ -4,8 +4,10 @@ import ListContainer from '../components/ListContainer/ListContainer'
 
 function Whiteboard() {
     const [reminders, setReminders] = useState(['one', 'two']);
+    const [toUpdate, setToUpdate] = useState('');
 
     const addReminder = (item) => {
+        
         setReminders(prev => [...prev, item]);
     }
 
@@ -19,11 +21,17 @@ function Whiteboard() {
       setReminders(filtered);
     }
 
+    const editReminder = (toEdit) => {
+      console.log('editing: ', toEdit);
+
+      setToUpdate(toEdit);
+    }
+
   return (
     <div className='whiteboard-container'>
         <h2>Whiteboard</h2>
-        <Form add={addReminder} />
-        <ListContainer data={reminders} remove={removeReminder}/>
+        <Form add={addReminder} update={toUpdate}/>
+        <ListContainer data={reminders} remove={removeReminder} update={editReminder}/>
     </div>
   )
 }
