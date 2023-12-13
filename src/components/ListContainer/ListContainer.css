@@ -1,3 +1,31 @@
 .data-item {
-    border: 2px solid red;
+    border: 2px solid green;
+    border-radius: 1em;
+    margin-bottom: 1em;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.data-item:hover {
+    background-color: green;
+    color: yellow;
+    cursor: pointer;
+}
+
+.data-item button {
+    margin-bottom: 1em;
+}
+
+.data-item .edit {
+    
+    margin-right: 1em;
+}
+
+.data-item .edit:hover {
+    
+    background-color: blue;
+}
+
+.data-item .delete:hover {
+    background-color: red;
 }

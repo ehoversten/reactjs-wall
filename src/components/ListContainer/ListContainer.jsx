@@ -2,10 +2,27 @@ import React from 'react'
 import "./ListContainer.css";
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
-function ListContainer({ data, remove, edit }) {
+function ListContainer({ data, remove, edit, reorder }) {
 
   const handleDragDrop = (results) => {
     console.log("Event: ", results);
+
+    const { source, destination, type } = results;
+
+    if(!destination) return;
+
+    if(source.droppableId === destination.droppableId && source.index === destination.index) return;
+
+    if(type === 'group') {
+      const reorderedReminders = [...data];
+      const sourceIndex = source.index;
+      const destinationIndex = destination.index;
+      // we want to 
+      const [selectedReminder] = reorderedReminders.splice(sourceIndex, 1);
+      reorderedReminders.splice(destinationIndex, 0, selectedReminder);
+
+      return reorder(reorderedReminders);
+    }
   }
 
   return (
@@ -34,8 +51,11 @@ function ListContainer({ data, remove, edit }) {
                           ref={provided.innerRef}  
                         >
                             <p>{item}</p>
-                            <button className="edit" onClick={() => edit(item)}>Edit</button>
-                            <button className="delete" onClick={() => remove(item)}>X</button>
+                            <div className="item-btn-container">
+                              <button className="edit" onClick={() => edit(item)}>Edit</button>
+                              <button className="delete" onClick={() => remove(item)}>X</button>
+
+                            </div>
                           </div>
                       ) }
                     </Draggable>

@@ -54,7 +54,7 @@ function Whiteboard() {
           ) : (
             <AddForm add={addReminder}/>
         )}
-        <ListContainer data={reminders} remove={removeReminder} edit={selectReminder}/>
+        <ListContainer data={reminders} remove={removeReminder} edit={selectReminder} reorder={setReminders}/>
     </div>
   )
 }
