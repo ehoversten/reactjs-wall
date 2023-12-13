@@ -3,7 +3,8 @@
     border-radius: 1em;
     margin-bottom: 1em;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    padding: 1em 1em; 
 }
 
 .data-item:hover {
@@ -28,4 +29,11 @@
 
 .data-item .delete:hover {
     background-color: red;
+}
+
+.item-btn-container {
+    /* padding-top: 1em; */
+    display: flex;
+    align-items: center;
+    align-content: center;
 }

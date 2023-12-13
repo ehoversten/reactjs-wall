@@ -60,6 +60,7 @@ function ListContainer({ data, remove, edit, reorder }) {
                       ) }
                     </Draggable>
                   ))}
+                { provided.placeholder }
               </div>
             )}
           </Droppable>
