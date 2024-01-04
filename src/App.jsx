@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import Whiteboard from './pages/Whiteboard'
 
 function App() {
 
@@ -7,7 +8,7 @@ function App() {
     <>
       <div>
         <h1>The Wall - Remind Me</h1>
-
+        <Whiteboard />
       </div>
     </>
   )
