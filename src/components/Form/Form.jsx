@@ -15,7 +15,7 @@ function Form({ add, update }) {
         evt.preventDefault();
         add(newItem);
         setNewItem('')
-        update('')
+        // update('')
     }
 
   return (
