@@ -2,30 +2,31 @@ import React, { useState, useEffect } from 'react'
 
 function Form({ add, update }) {
 
-    const [newReminder, setNewReminder] = useState('');
+    const [newItem, setNewItem] = useState('');
 
     useEffect(() => {
       if(update) {
-        setNewReminder(update);
+        setNewItem(update);
       }
     }, [update])
 
 
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        add(newReminder);
-        setNewReminder('')
+        add(newItem);
+        setNewItem('')
         update('')
     }
 
   return (
     <div className='form-container'>
         <form onSubmit={handleSubmit}>
-            <label htmlFor="reminder">Add New Reminder:</label>
+            <label htmlFor="reminder">Add New : </label>
             <input type="text" 
-                   id="reminder"
-                   value={newReminder} 
-                   onChange={(evt) => setNewReminder(evt.target.value)}/>
+                   id="item"
+                   value={newItem}
+                   placeholder='Add New ...' 
+                   onChange={(evt) => setNewItem(evt.target.value)}/>
             { update ? (
               <button type="submit">Update</button>
             ) : (

@@ -13,10 +13,11 @@ function Form({ add }) {
   return (
     <div className='add-form-container'>
         <form onSubmit={handleSubmit}>
-            <label htmlFor="new-reminder">Add New Reminder:</label>
+            <label htmlFor="new-reminder">Add New : </label>
             <input type="text" 
                    id="new-reminder"
                    value={newReminder} 
+                   placeholder='Reminder...'
                    onChange={(evt) => setNewReminder(evt.target.value)}/>
               <button type="submit">Add</button>
         </form>
