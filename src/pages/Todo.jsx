@@ -22,9 +22,20 @@ function Todo() {
             id: taskList.length + 1, // random ID(?)
             title: data,
             // description: data.description
+            created: Date.now()
         }
         console.log("new: ", newTodo)
         setTaskList(prev => [...prev, newTodo]);
+    }
+
+    const remove = (id) => {
+
+        const filtered = taskList.filter(task => {
+            if(task.id !== id) {
+                return task;
+            }
+        })
+        setTaskList(filtered);
     }
 
     return (
@@ -34,7 +45,7 @@ function Todo() {
             <Form add={addNew}/>
             {/* List Component */}
             {/* <ListContainer data={taskList} /> */}
-            <SimpleListContainer data={taskList} />
+            <SimpleListContainer data={taskList} remove={remove} />
         </div>
     )
 }
