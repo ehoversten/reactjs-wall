@@ -1,7 +1,7 @@
 import React from 'react';
 import './ListContainer.css';
 
-function SimpleListContainer({ data, remove }) {
+function SimpleListContainer({ data, remove, complete }) {
 
   return (
     <div className="list-container">
@@ -10,6 +10,7 @@ function SimpleListContainer({ data, remove }) {
             { data.map(item => (
                 <div className="data-item" key={item.id}>
                     <p>{item.title}</p>
+                    <button className="complete" onClick={() => complete(item.id)}>Done</button>
                     <button className="delete" onClick={() => remove(item.id)}>X</button>
                 </div>
             ))}
