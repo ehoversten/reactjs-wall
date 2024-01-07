@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaTrashAlt, FaCalendarCheck, FaEdit } from "react-icons/fa";
 import './ListContainer.css';
 
 function SimpleListContainer({ data, remove, complete, edit }) {
@@ -10,8 +11,13 @@ function SimpleListContainer({ data, remove, complete, edit }) {
             { data.map(item => (
                 <div className="data-item" key={item.id}>
                     <p>{item.title}</p>
-                    <button className="complete" onClick={() => complete(item.id)}>Done</button>
-                    <button className="delete" onClick={() => remove(item.id)}>X</button>
+                    {/* <button className="complete" onClick={() => complete(item.id)}>Done</button>
+                    <button className="delete" onClick={() => remove(item.id)}>X</button> */}
+                    <div className="icon-container">
+                        <FaCalendarCheck className='icon' onClick={() => complete(item.id)}/>
+                        <FaEdit className='icon' onClick={() => edit(item.id)}/>
+                        <FaTrashAlt className='icon' onClick={() => remove(item.id)}/>
+                    </div>
                 </div>
             ))}
         </div>

@@ -65,7 +65,7 @@ function Todo() {
 
     return (
         <div className="todo-container">
-            <h1>Todo</h1>
+            <h2>Todo</h2>
             {/* Input Form */}
             <Form add={addNew}/>
             {/* List Component */}
