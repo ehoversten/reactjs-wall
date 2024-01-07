@@ -1,7 +1,7 @@
 import React from 'react';
 import './ListContainer.css';
 
-function SimpleListContainer({ data, remove, complete }) {
+function SimpleListContainer({ data, remove, complete, edit }) {
 
   return (
     <div className="list-container">

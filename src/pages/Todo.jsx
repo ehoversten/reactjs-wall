@@ -28,6 +28,17 @@ function Todo() {
         setTaskList(prev => [...prev, newTodo]);
     }
 
+    const update = (id, data) => {
+        let updated = taskList.map(task => {
+            if(task.id === id) {
+                task.title = data;
+            }
+            return task;
+        });
+        console.log('Updated Todo')
+        setTaskList(updated);
+    }
+
     const remove = (id) => {
         const filtered = taskList.filter(task => {
             if(task.id !== id) {
@@ -62,7 +73,8 @@ function Todo() {
             <SimpleListContainer 
                 data={taskList} 
                 remove={remove} 
-                complete={completed} />s
+                edit={update}
+                complete={completed} />
         </div>
     )
 }

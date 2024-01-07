@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 function Form({ add, update }) {
 
     const [newItem, setNewItem] = useState('');
 
+    const focusRef = useRef(null);
+
     useEffect(() => {
+      focusRef.current.focus();
       if(update) {
         setNewItem(update);
       }
@@ -25,6 +28,7 @@ function Form({ add, update }) {
             <input type="text" 
                    id="item"
                    value={newItem}
+                   ref={focusRef}
                    placeholder='Add New ...' 
                    onChange={(evt) => setNewItem(evt.target.value)}/>
             { update ? (
