@@ -1,4 +1,5 @@
 import React from 'react'
+import { FaTrashAlt, FaCalendarCheck, FaEdit } from "react-icons/fa";
 import "./ListContainer.css";
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 
@@ -51,10 +52,13 @@ function ListContainer({ data, remove, edit, reorder }) {
                           ref={provided.innerRef}  
                         >
                             <p>{item}</p>
-                            <div className="item-btn-container">
+                            {/* <div className="item-btn-container">
                               <button className="edit" onClick={() => edit(item)}>Edit</button>
                               <button className="delete" onClick={() => remove(item)}>X</button>
-
+                            </div> */}
+                            <div className="icon-container">
+                                <FaEdit className='icon' onClick={() => edit(item)}/>
+                                <FaTrashAlt className='icon' onClick={() => remove(item)}/>
                             </div>
                           </div>
                       ) }
