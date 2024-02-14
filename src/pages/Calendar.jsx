@@ -38,7 +38,7 @@ function Calendar() {
             {daysInMonth.map((day, index) => {
                 return <div 
                             key={index}
-                            className={clsx("border rounded-md p-2 text-center", {
+                            className={clsx("border rounded-md p-2 text-center hover:bg-violet-600", {
                                 "bg-gray-200": isToday(day),
                                 "text-gray-900": isToday(day)
                             })}

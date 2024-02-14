@@ -44,6 +44,7 @@
 }
 
 .icon-container {
+    display: flex;
     margin: auto 0;
 }
 
