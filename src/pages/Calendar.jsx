@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import clsx from 'clsx';
-import { format, startOfMonth, endOfMonth, eachDayOfInterval, getDay, isToday } from 'date-fns';
+import { format, startOfMonth, endOfMonth, eachDayOfInterval, getDay, isToday, isSameDay } from 'date-fns';
 
 function Calendar() {
     const currentDate = new Date();
@@ -14,6 +14,14 @@ function Calendar() {
     });
 
     const startingDayIndex = getDay(firstDayOfMonth);
+
+    const [events, setEvents] = useState([
+        { date: '2024-02-12', title: 'ballz' }, 
+        { date: '2024-02-25', title: 'bingo' }, 
+        { date: '2024-02-04', title: 'tinker' }, 
+    ]);
+    // event object structure { date: Date, title: String }
+    // Date format --> 'yyyy-MM-dd'
 
   return (
     <div className="event-container container mx-auto p-4">
@@ -34,7 +42,14 @@ function Calendar() {
                                 "bg-gray-200": isToday(day),
                                 "text-gray-900": isToday(day)
                             })}
-                        >{format(day, "d")}</div>
+                        >{format(day, "d")}
+                        {events
+                            .filter(event => isSameDay(event.date, day))
+                            .map(event => {
+                                return <div key={event.title}>{event.title}</div>
+                            })    
+                        }
+                        </div>
             })}
         </div>
     </div>
