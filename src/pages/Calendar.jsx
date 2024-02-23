@@ -33,7 +33,7 @@ function Calendar() {
                 return <div key={day}>{day}</div>
             })}
             {Array.from({ length: startingDayIndex }).map((_, index) => {
-                return <div key={`empty-${index}`}>X</div>
+                return <div key={`empty-${index}`} className=""></div>
             })}
             {daysInMonth.map((day, index) => {
                 return <div 
