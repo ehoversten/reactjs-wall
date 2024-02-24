@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useMemo } from 'react';
 import clsx from 'clsx';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, getDay, isToday, isSameDay } from 'date-fns';
 
@@ -22,6 +22,18 @@ function Calendar() {
     ]);
     // event object structure { date: Date, title: String }
     // Date format --> 'yyyy-MM-dd'
+
+    // -- Trying to figure out how to make this component more performant -- usememo -- //
+    // const eventsByDate = useMemo(() => {
+    //     return events.reduce((acc: { [key: string]: {[{ date: Date, title: string }]} }, event) => {
+    //         const dateKey = format(event.date, "yyyy-MM-dd");
+    //         if(!acc[dateKey]) {
+    //             acc[dateKey] = [];
+    //         }
+    //         acc[dateKey].push(event);
+    //         return acc;
+    //     }, {});
+    // }, [events]);
 
   return (
     <div className="event-container container mx-auto p-4">
