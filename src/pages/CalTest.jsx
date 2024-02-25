@@ -2,6 +2,8 @@ import React, { useState, useMemo } from 'react';
 import Modal from '../components/Modal/ModalNoPortal';
 import clsx from 'clsx';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, getDay, isToday, isSameDay } from 'date-fns';
+import { useContext } from 'react';
+import EventContext from '../contexts/EventContext';
 
 function Calendar() {
     const [openModal, setOpenModal] = useState(false);
@@ -17,12 +19,14 @@ function Calendar() {
     });
 
     const startingDayIndex = getDay(firstDayOfMonth);
+    // using ContextAPI
+    const { events } = useContext(EventContext);
 
-    const [events, setEvents] = useState([
-        { date: '2024-02-12', title: 'ballz', description: 'ting tang walla walla bing bang' }, 
-        { date: '2024-02-25', title: 'bingo' }, 
-        { date: '2024-02-04', title: 'tinker' }, 
-    ]);
+    // const [events, setEvents] = useState([
+    //     { date: '2024-02-12', title: 'ballz', description: 'ting tang walla walla bing bang' }, 
+    //     { date: '2024-02-25', title: 'bingo' }, 
+    //     { date: '2024-02-04', title: 'tinker' }, 
+    // ]);
     // event object structure { date: Date, title: String }
     // Date format --> 'yyyy-MM-dd'
 
@@ -60,7 +64,7 @@ function Calendar() {
                             onClick={() => setOpenModal(!openModal)}
                         >{format(day, "d")}
                         {events
-                            .filter(event => isSameDay(event.date, day))
+                            .filter(event => isSameDay(event.created_at, day))
                             .map(event => {
                                 return (
                                     <>
@@ -69,7 +73,7 @@ function Calendar() {
                                         </div>             
                                         <Modal open={openModal} close={setOpenModal}>
                                             {events
-                                                .filter(event => isSameDay(event.date, day))
+                                                .filter(event => isSameDay(event.created_at, day))
                                                 .map(event => {
                                                     return (
                                                         <div key={event.title}>
