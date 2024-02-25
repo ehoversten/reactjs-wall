@@ -11,12 +11,27 @@
     align-items: center;
 }
 
-.modal {
+.modal-container {
     background-color: white;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    min-width: 500px;
     max-width: 80%;
+    min-height: 300px;
     max-height: 80%;
     overflow: auto;
+}
+
+
+.close-modal {
+    background-color: red;
+    color: white;
+    /* padding: 0.5em 0.5em; */
+}
+
+.modal-content-container {
+    color: rgb(42, 42, 42);
+    display: flex;
+    justify-content: center;
 }

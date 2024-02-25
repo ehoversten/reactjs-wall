@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import Modal from '../components/Modal/Modal';
+import Modal from '../components/Modal/ModalNoPortal';
 import clsx from 'clsx';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, getDay, isToday, isSameDay } from 'date-fns';
 
@@ -63,17 +63,27 @@ function Calendar() {
                             .filter(event => isSameDay(event.date, day))
                             .map(event => {
                                 return (
+                                    <>
                                         <div key={event.title}>
                                             {event.title}
-                                            <Modal open={openModal} close={setOpenModal}>
-                                                {event.title}
-                                                {event.description}
-                                            </Modal>
-                                        </div>
+                                        </div>             
+                                        <Modal open={openModal} close={setOpenModal}>
+                                            {events
+                                                .filter(event => isSameDay(event.date, day))
+                                                .map(event => {
+                                                    return (
+                                                        <div key={event.title}>
+                                                            {event.title}
+                                                        </div>
+                                                    )
+                                                })    
+                                            }
+                                        </Modal>
+                                    </>
                                 )
                             })    
                         }
-                        </div>
+                    </div>
             })}
         </div>
     </div>
