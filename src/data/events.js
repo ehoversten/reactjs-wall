@@ -10,6 +10,8 @@ const event = {
     tags: [tag] 
 }
 
+-- Date format --> 'yyyy-MM-dd'
+
 const tag = { 
     title: STRING, 
     category: STRING 
@@ -22,6 +24,7 @@ const testEvents = [
     { 
         title: "Rock the Park",
         description: "A night of rock music under the stars",
+        // timestart: "7:00 PM",
         created_at: new Date("2024-02-15"),
         tags: [
             { title: "Rock", category: "Music" },

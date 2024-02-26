@@ -22,12 +22,6 @@ function Calendar() {
     // using ContextAPI
     const { events } = useContext(EventContext);
 
-    // const [events, setEvents] = useState([
-    //     { date: '2024-02-12', title: 'ballz', description: 'ting tang walla walla bing bang' }, 
-    //     { date: '2024-02-25', title: 'bingo' }, 
-    //     { date: '2024-02-04', title: 'tinker' }, 
-    // ]);
-    // event object structure { date: Date, title: String }
     // Date format --> 'yyyy-MM-dd'
 
     // -- Trying to figure out how to make this component more performant -- usememo -- //
@@ -42,17 +36,10 @@ function Calendar() {
     //     }, {});
     // }, [events]);
 
-    const handleClick = (event) => {
-        console.log("Event: ", event.target)
-        console.log("Value: ", event.target.textContent)
-        setCurrEventDay(event.target.textContent);
-        setOpenModal(!openModal);
-    }
-
   return (
     <div className="event-container container mx-auto p-4">
         <div className="mb-4">
-            <h2 className="text-center">{format(currentDate, "MMMM yyyy")}</h2>
+            <h2 className="text-center today">{format(currentDate, "MMMM yyyy")}</h2>
         </div>
         <div className="grid grid-cols-7 gap-2">
             {WEEKDAYS.map(day => {
@@ -68,8 +55,6 @@ function Calendar() {
                                 "bg-gray-200": isToday(day),
                                 "text-gray-900": isToday(day)
                             })}
-                            // onClick={handleClick}
-                            // onClick={() => setOpenModal(!openModal)}
                             onClick={() => {
                                 setCurrEventDay(day)
                                 setOpenModal(!openModal)
