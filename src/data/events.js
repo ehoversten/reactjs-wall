@@ -22,8 +22,7 @@ const testEvents = [
     { 
         title: "Rock the Park",
         description: "A night of rock music under the stars",
-        created_at: "2024-02-15",
-        // created_at: new Date("2024-02-15"),
+        created_at: new Date("2024-02-15"),
         tags: [
             { title: "Rock", category: "Music" },
             { title: "Outdoor", category: "Venue" }
@@ -41,7 +40,7 @@ const testEvents = [
     { 
         title: "Pop Sensation Live",
         description: "Get ready for a night of chart-topping hits",
-        created_at: new Date("2024-10-10"),
+        created_at: new Date("2024-02-10"),
         tags: [
             { title: "Pop", category: "Music" },
             { title: "Concert", category: "Event Type" }
@@ -59,10 +58,18 @@ const testEvents = [
     { 
         title: "Classical Night at the Symphony",
         description: "An evening of classical masterpieces performed by the symphony orchestra",
-        created_at: new Date("2024-02-01"),
+        created_at: new Date("2024-02-02"),
         tags: [
             { title: "Classical", category: "Music" },
             { title: "Symphony", category: "Orchestra" }
+        ]
+    },
+    { 
+        title: "Recording",
+        description: "three piece recording session",
+        created_at: new Date("2024-02-02"),
+        tags: [
+            { title: "Funky Town", category: "Recording" },
         ]
     }
 ];

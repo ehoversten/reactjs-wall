@@ -32,6 +32,24 @@
 
 .modal-content-container {
     color: rgb(42, 42, 42);
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
+    text-align: center;
+}
+
+.modal-content-container > h2 {
+    font-size: 1.55rem;
+}
+
+.event-modal {
+    border: 2px solid green;
+
+    border-radius: 1em;
+    margin-top: 0.75em;
+    padding: 1em;
+}
+
+.event-modal > h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.5em;
 }

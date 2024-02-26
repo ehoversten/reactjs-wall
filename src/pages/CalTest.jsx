@@ -1,12 +1,12 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useContext } from 'react';
 import Modal from '../components/Modal/ModalNoPortal';
 import clsx from 'clsx';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, getDay, isToday, isSameDay } from 'date-fns';
-import { useContext } from 'react';
 import EventContext from '../contexts/EventContext';
 
 function Calendar() {
-    const [openModal, setOpenModal] = useState(false);
+    const { openModal, setOpenModal, setCurrEventDay } = useContext(EventContext);
+    // const [openModal, setOpenModal] = useState(false);
 
     const currentDate = new Date();
     const WEEKDAYS = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"]
@@ -42,6 +42,13 @@ function Calendar() {
     //     }, {});
     // }, [events]);
 
+    const handleClick = (event) => {
+        console.log("Event: ", event.target)
+        console.log("Value: ", event.target.textContent)
+        setCurrEventDay(event.target.textContent);
+        setOpenModal(!openModal);
+    }
+
   return (
     <div className="event-container container mx-auto p-4">
         <div className="mb-4">
@@ -61,29 +68,20 @@ function Calendar() {
                                 "bg-gray-200": isToday(day),
                                 "text-gray-900": isToday(day)
                             })}
-                            onClick={() => setOpenModal(!openModal)}
-                        >{format(day, "d")}
+                            // onClick={handleClick}
+                            // onClick={() => setOpenModal(!openModal)}
+                            onClick={() => {
+                                setCurrEventDay(day)
+                                setOpenModal(!openModal)
+                            }}
+                            ><p>{format(day, "d")}</p>
                         {events
                             .filter(event => isSameDay(event.created_at, day))
                             .map(event => {
                                 return (
-                                    <>
-                                        <div key={event.title}>
-                                            {event.title}
-                                        </div>             
-                                        <Modal open={openModal} close={setOpenModal}>
-                                            {events
-                                                .filter(event => isSameDay(event.created_at, day))
-                                                .map(event => {
-                                                    return (
-                                                        <div key={event.title}>
-                                                            {event.title}
-                                                        </div>
-                                                    )
-                                                })    
-                                            }
-                                        </Modal>
-                                    </>
+                                    <div key={event.title} className={clsx("rounded-md p-2 text-center bg-green-600 m-2")}>
+                                        {event.title}
+                                    </div>             
                                 )
                             })    
                         }
