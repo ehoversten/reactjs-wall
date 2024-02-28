@@ -1,5 +1,8 @@
 import React from 'react';
 import { FaTrashAlt, FaCalendarCheck, FaEdit } from "react-icons/fa";
+import { Tooltip } from 'react-tooltip'
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css'; // optional
 import './ListContainer.css';
 
 function SimpleListContainer({ data, remove, complete, edit }) {

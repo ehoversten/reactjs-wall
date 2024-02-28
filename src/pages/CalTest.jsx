@@ -1,10 +1,12 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useContext } from 'react';
 import Modal from '../components/Modal/ModalNoPortal';
 import clsx from 'clsx';
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, getDay, isToday, isSameDay } from 'date-fns';
+import EventContext from '../contexts/EventContext';
 
 function Calendar() {
-    const [openModal, setOpenModal] = useState(false);
+    const { openModal, setOpenModal, setCurrEventDay } = useContext(EventContext);
+    // const [openModal, setOpenModal] = useState(false);
 
     const currentDate = new Date();
     const WEEKDAYS = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"]
@@ -17,13 +19,9 @@ function Calendar() {
     });
 
     const startingDayIndex = getDay(firstDayOfMonth);
+    // using ContextAPI
+    const { events } = useContext(EventContext);
 
-    const [events, setEvents] = useState([
-        { date: '2024-02-12', title: 'ballz', description: 'ting tang walla walla bing bang' }, 
-        { date: '2024-02-25', title: 'bingo' }, 
-        { date: '2024-02-04', title: 'tinker' }, 
-    ]);
-    // event object structure { date: Date, title: String }
     // Date format --> 'yyyy-MM-dd'
 
     // -- Trying to figure out how to make this component more performant -- usememo -- //
@@ -41,7 +39,7 @@ function Calendar() {
   return (
     <div className="event-container container mx-auto p-4">
         <div className="mb-4">
-            <h2 className="text-center">{format(currentDate, "MMMM yyyy")}</h2>
+            <h2 className="text-center today">{format(currentDate, "MMMM yyyy")}</h2>
         </div>
         <div className="grid grid-cols-7 gap-2">
             {WEEKDAYS.map(day => {
@@ -57,29 +55,18 @@ function Calendar() {
                                 "bg-gray-200": isToday(day),
                                 "text-gray-900": isToday(day)
                             })}
-                            onClick={() => setOpenModal(!openModal)}
-                        >{format(day, "d")}
+                            onClick={() => {
+                                setCurrEventDay(day)
+                                setOpenModal(!openModal)
+                            }}
+                            ><p>{format(day, "d")}</p>
                         {events
-                            .filter(event => isSameDay(event.date, day))
+                            .filter(event => isSameDay(event.created_at, day))
                             .map(event => {
                                 return (
-                                    <>
-                                        <div key={event.title}>
-                                            {event.title}
-                                        </div>             
-                                        <Modal open={openModal} close={setOpenModal}>
-                                            {events
-                                                .filter(event => isSameDay(event.date, day))
-                                                .map(event => {
-                                                    return (
-                                                        <div key={event.title}>
-                                                            {event.title}
-                                                        </div>
-                                                    )
-                                                })    
-                                            }
-                                        </Modal>
-                                    </>
+                                    <div key={event.title} className={clsx("rounded-md p-2 text-center bg-green-600 m-2")}>
+                                        {event.title}
+                                    </div>             
                                 )
                             })    
                         }

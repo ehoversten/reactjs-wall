@@ -5,7 +5,7 @@ import './Modal.css'
 function Modal({ children, open, close }) {
   if(!open) return null;
 
-  const modalElement = document.getElementById('overlay');
+  const modalElement = document.getElementById('modal');
 
   return createPortal(
     <div className='overlay'>
@@ -13,7 +13,10 @@ function Modal({ children, open, close }) {
             <div className="modal-btn-container">
                 <button 
                     className="close-modal" 
-                    onClick={() => close(!open) }>X</button>
+                    onClick={() => {
+                      // clear currEventDay (?)
+                      close(!open) 
+                    }}>X</button>
             </div>
             <div className="modal-content-container">
                 {children}
